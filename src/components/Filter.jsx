@@ -3,18 +3,10 @@ import { PropTypes } from 'prop-types';
 
 
 class Filter extends Component {
-    // state = {
-    //     filter: '',
-    // }
-
-    handleChange = evt => {
-        const { name, value } = evt.target;
-        this.setState({ [name]: value });
-    };
 
     render() {
         const { handleChange, filter } = this.props;
-        // const { filter } = this.state;
+
         return (
             <label >
                 <input

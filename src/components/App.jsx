@@ -16,6 +16,27 @@ export class App extends Component {
     filter: '',
   }
 
+  componentDidMount() {
+
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+
+      // if (this.state.contacts.length === 0) {
+      //   localStorage.clear();
+      // }
+    }
+  }
+
   handleChange = evt => {
     const { name, value } = evt.target;
     this.setState({ [name]: value });
@@ -33,6 +54,7 @@ export class App extends Component {
     }))
 
   }
+
 
   handleDelete = id => {
     this.setState(prevState => {
